@@ -1,0 +1,448 @@
+/* =======================================================
+   1. GLOBAL RESETS & BRAND VARIABLES
+   ======================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #0d6efd;    /* Brand Blue */
+    --secondary: #ff9017;  /* Brand Orange */
+    --success: #00b517;    /* Green */
+    --text-dark: #1c1c1c;  /* Headings */
+    --text-gray: #505050;  /* Body text */
+    --border-color: #e4e4e4;
+    --bg-light: #f7f9fa;
+}
+
+* { box-sizing: border-box; font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+body { background-color: var(--bg-light); font-size: 14px; color: var(--text-gray); line-height: 1.5; }
+h1, h2, h3, h4, h5, h6, .title { color: var(--text-dark) !important; font-weight: 600; }
+a { text-decoration: none; color: inherit; transition: 0.2s; }
+a:hover { color: var(--primary) !important; }
+.card { border: 1px solid var(--border-color); border-radius: 6px; background-color: #fff; }
+.shadow-sm { box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
+.padding-y { padding-top: 30px; padding-bottom: 30px; }
+
+/* =======================================================
+   2. HEADER & DROPDOWNS (Z-Index Fix)
+   ======================================================= */
+.section-header { 
+    background-color: #fff; 
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    z-index: 1050; /* Above hero banner */
+}
+
+/* Fix for Ship to / Language dropdown mouse clicking */
+.dropdown-menu { 
+    z-index: 2000 !important; 
+    pointer-events: auto !important; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+}
+
+.nav-link { font-weight: 500; color: var(--text-dark) !important; padding: 12px 15px !important; }
+
+/* =======================================================
+   3. INDEX: HERO BANNERS & DEALS
+   ======================================================= */
+/* Main Banner */
+.hero-gradient-bg {
+    background: #C3EEF1 url('../images/hero_bg.jpg') center right no-repeat;
+    background-size: cover; border-radius: 6px; min-height: 380px;
+}
+
+/* Deals Row: Forces 5 items in a straight row */
+.deals-row-container {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+.col-deal {
+    flex: 0 0 20%; 
+    min-width: 150px;
+    padding: 20px;
+    text-align: center;
+    border-right: 1px solid var(--border-color);
+}
+.deal-img-wrapper {
+    height: 110px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;
+}
+.deal-img-wrapper img { max-height: 100%; max-width: 100%; object-fit: contain; }
+
+/* =======================================================
+   4. INDEX: CATEGORY GRIDS (Home & Electronics)
+   ======================================================= */
+.bg-img-home { background: #f8f9fa url('../images/img1.jpg') center/cover no-repeat; min-height: 280px; }
+.bg-img-elec { background: #f8f9fa url('../images/img2.jpg') center/cover no-repeat; min-height: 280px; }
+
+/* 8-Item Grid Cell: Text Left, Image Right */
+.grid-card-item {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    height: 140px; /* Aligns all rows perfectly */
+    background: #fff;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    text-decoration: none;
+}
+.grid-card-item .info { flex: 1; min-width: 0; }
+.grid-card-item .img-side {
+    width: 70px; height: 70px; 
+    object-fit: contain !important; /* Fix for cut-off phones/laptops */
+    margin-left: 10px;
+}
+
+/* =======================================================
+   5. SHOP PAGE & MOBILE APP VIEW
+   ======================================================= */
+/* Desktop List View Alignment */
+@media (min-width: 992px) {
+    .card-product-list .row { min-height: 180px; align-items: stretch; }
+    .card-product-list .border-start { border-left: 1px solid #eee !important; background: #fdfdfd; }
+}
+
+/* Swipable Category Pills (Mobile) */
+.scroll-categories, .scroll-pills-wrap {
+    display: flex; overflow-x: auto; white-space: nowrap; gap: 8px;
+    -ms-overflow-style: none; scrollbar-width: none;
+}
+.scroll-categories::-webkit-scrollbar { display: none; }
+
+.pill-link {
+    background: #eff2f4; color: #505050; padding: 6px 16px; 
+    border-radius: 4px; font-size: 13px; text-decoration: none;
+}
+.pill-link.active { background: #e5f1ff; color: var(--primary); border: 1px solid var(--primary); font-weight: bold; }
+
+/* Horizontal List Cards (Mobile) */
+.mobile-product-card, .shop-list-item {
+    display: flex; background: #fff; border-bottom: 1px solid #eee; 
+    padding: 15px; text-decoration: none !important;
+}
+.mobile-product-card .img-side, .shop-list-item .img-wrap { width: 100px; height: 100px; flex-shrink: 0; }
+.mobile-product-card img, .shop-list-item img { width: 100%; height: 100%; object-fit: contain; }
+
+/* =======================================================
+   6. PRODUCT DETAIL PAGE (Gallery & Review)
+   ======================================================= */
+.img-big-wrap {
+    height: 450px !important; width: 100%; background: #fff;
+    border: 1px solid #eee; border-radius: 6px; display: flex;
+    align-items: center; justify-content: center; overflow: hidden; 
+}
+.img-big-wrap img { max-height: 100% !important; max-width: 100% !important; object-fit: contain; }
+
+.thumbs-wrap { display: flex; gap: 8px; margin-top: 15px; }
+.item-thumb {
+    width: 60px; height: 60px; border: 1px solid #ddd; border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center; background: #fff;
+}
+
+/* ⭐ INTERACTIVE RATING STARS ⭐ */
+.rating-input { display: flex; flex-direction: row-reverse; justify-content: flex-end; }
+.rating-input input { display: none; }
+.rating-input label { cursor: pointer; width: 30px; font-size: 25px; color: #ddd; transition: 0.2s; }
+.rating-input label:before { content: '\f005'; font-family: 'Font Awesome 6 Free'; font-weight: 900; }
+.rating-input input:checked ~ label, .rating-input label:hover, .rating-input label:hover ~ label { color: var(--secondary); }
+
+/* =======================================================
+   7. FOOTER, SERVICES & SOCIALS
+   ======================================================= */
+.inquiry-banner { background: linear-gradient(135deg, #2C7BE5 0%, #15B2E5 100%); border-radius: 8px; color: #fff; padding: 40px; }
+.inquiry-banner h2 { color: #fff !important; }
+
+/* Floating Service Icon Box */
+.service-icon-box {
+    position: absolute; right: 15px; top: -22px; width: 44px; height: 44px;
+    background: #D1E7FF; border: 3px solid #fff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 16px; color: #1c1c1c;
+}
+
+/* Circular Gray Social Icons */
+.social-icon {
+    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+    background-color: #8b96a2; color: #fff !important; border-radius: 50%; transition: 0.3s;
+}
+.social-icon:hover { background-color: var(--primary); transform: translateY(-2px); }
+
+/* =======================================================
+   8. MISC & RESPONSIVE
+   ======================================================= */
+.scroll-hide::-webkit-scrollbar { display: none; }
+.scroll-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+@media (max-width: 991px) {
+    .img-big-wrap { height: 320px !important; }
+    .grid-card-item { height: 120px; }
+    .col-deal { flex: 0 0 45%; } 
+    .inquiry-banner { padding: 25px; }
+}
+/* =======================================================
+   CART PAGE SPECIFIC STYLING
+   ======================================================= */
+
+/* 1. Main Cart Layout */
+.cart-item {
+    display: flex;
+    padding: 20px;
+    background: #fff;
+    border-bottom: 1px solid var(--border-color);
+}
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+/* Image box with grey background */
+.cart-item .img-wrap {
+    width: 80px;
+    height: 80px;
+    background: #eef2f4;
+    border-radius: 6px;
+    padding: 10px;
+    flex-shrink: 0;
+}
+.cart-item .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Action Links (Remove/Save) */
+.btn-cart-action {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    background: #fff;
+    margin-right: 5px;
+    display: inline-block;
+}
+.btn-cart-action.remove { color: #fa3434; } /* Red for Remove */
+.btn-cart-action.save { color: var(--primary-color); } /* Blue for Save */
+
+/* 2. Summary Sidebar (Right Side) */
+.summary-card {
+    padding: 20px;
+    border-radius: 8px;
+}
+.coupon-input .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Values in summary */
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+.summary-item.discount { color: #fa3434; }
+.summary-item.tax { color: #00b517; }
+.summary-total {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Big Green Checkout Button */
+.btn-checkout {
+    background-color: #00b517 !important;
+    border: none;
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 6px;
+    width: 100%;
+}
+
+/* 3. Features Section (Secure payment, etc.) */
+.feature-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    background: #eef2f4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8b96a2;
+}
+
+/* 4. Saved For Later Grid */
+.saved-item-card {
+    padding: 15px;
+    height: 100%;
+}
+.saved-item-card .img-wrap {
+    height: 160px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+.saved-item-card img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* Move to cart button (Outline blue with icon) */
+.btn-move-cart {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background: #fff;
+    width: 100%;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 6px;
+}
+.btn-move-cart:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* 5. Mobile Adjustments */
+@media (max-width: 768px) {
+    .cart-item { flex-direction: row; flex-wrap: wrap; }
+    .cart-item .price-wrap { width: 100%; text-align: left; margin-top: 10px; }
+}
+/* 🖼️ ULTIMATE FIX FOR PRODUCT IMAGE OVERLAP */
+.gallery-wrap {
+    width: 100% !important;
+}
+
+.img-big-wrap {
+    height: 480px !important; /* Fixed height for the box */
+    width: 100% !important;
+    background-color: #fff; 
+    border: 1px solid #eee; 
+    border-radius: 6px;
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: center !important;
+    overflow: hidden !important; /* Prevents image from spilling out */
+    position: relative;
+}
+
+.img-big-wrap img { 
+    max-height: 100% !important; 
+    max-width: 100% !important;
+    width: auto !important; 
+    height: auto !important; 
+    object-fit: contain !important; /* Shrinks the image to fit perfectly inside the box */
+    display: block;
+}
+
+/* Fix for the column layout on large screens */
+@media (min-width: 992px) {
+    .padding-y .row {
+        display: flex;
+        align-items: flex-start;
+    }
+}
+/* =======================================================
+   PRODUCT GALLERY FIX (NO OVERFLOW)
+   ======================================================= */
+.gallery-wrap {
+    width: 100% !important;
+    position: relative;
+}
+
+/* The White Box Container */
+.img-big-wrap {
+    height: 450px !important; /* Limits the container height */
+    width: 100% !important;
+    background-color: #fff; 
+    border: 1px solid #eee; 
+    border-radius: 8px;
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: center !important;
+    overflow: hidden !important; /* CRITICAL: Prevents the big image from leaking out */
+    padding: 20px;
+}
+
+/* The Actual Image Inside the Box */
+.img-big-wrap img { 
+    max-height: 100% !important; /* Forces image to stay inside 450px */
+    max-width: 100% !important;
+    width: auto !important; 
+    height: auto !important; 
+    object-fit: contain !important; /* Keeps image looking natural, not stretched */
+    display: block;
+}
+
+/* Fix for Thumbnails (Small Images) */
+.item-thumb {
+    width: 60px !important;
+    height: 60px !important;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    margin-right: 8px;
+    overflow: hidden;
+}
+
+.item-thumb img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+/* --- Proper Cart Page Styling --- */
+
+.cart-item-row {
+    transition: 0.2s;
+}
+
+.cart-item-row:hover {
+    background-color: #fcfcfc !important;
+}
+
+/* Quantity Button Box Styling */
+.qty-input-group {
+    width: 120px;
+    background: #fff;
+    display: inline-flex;
+}
+
+.qty-input-group .btn-light {
+    background: #f8f9fa;
+    border-radius: 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.qty-input-group div {
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* Proced to Checkout button */
+.btn-success {
+    background-color: #00b517 !important;
+    border: none;
+}
+
+/* Responsive fixes for desktop list borders */
+@media (min-width: 992px) {
+    .border-end-lg {
+        border-right: 1px solid #eee !important;
+    }
+}
